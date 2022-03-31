@@ -7,8 +7,8 @@ import { async } from "@firebase/util";
 // Actions
 const LOAD = 'skilled/LOAD';
 const CREATE = 'skilled/CREATE';
-const UPDATE = 'skilled/UPDATE'; //수정
-const DELETE = 'skilled/DELETE'; // 삭제
+const UPDATE = 'skilled/UPDATE'; 
+const DELETE = 'skilled/DELETE'; 
 
 const initialState = {
     list : [],
@@ -135,7 +135,7 @@ export default function reducer(state = initialState, action = {}) {
             }else{
                 return l ;
             }
-        });console.log(new_skilled_lists);
+        });//console.log(new_skilled_lists);
         //console.log({list : new_skilled_list});
         return {list : new_skilled_lists};
     }
