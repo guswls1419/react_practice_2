@@ -14,7 +14,7 @@ font-weight : bold;
 color : rgb(255, 173, 66);
 `;
 
-export const BtnUp = styled.button `
+export const BtnChakUp = styled.button `
 width: 5px;
 height: 5px;
 border: none;
@@ -23,6 +23,18 @@ display : box;
 position : absolute;
 top : 15px;
 right : 65px;
+font-size: 15px;
+`;
+
+export const BtnUp = styled.button `
+width: 5px;
+height: 5px;
+border: none;
+background:none;
+display : box;
+position : absolute;
+top : 15px;
+right : 95px;
 font-size: 15px;
 `;
 

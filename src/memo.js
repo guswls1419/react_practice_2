@@ -3,18 +3,19 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from "react-redux";
-import {loadSkilledFB, deldteSkilledFB, updateSkilledFB} from "./redux/modules/skilled";
+import {loadSkilledFB, deldteSkilledFB, CheckSkilledFB} from "./redux/modules/skilled";
 import { useHistory } from 'react-router-dom';
 import * as S from './memo_style';
+import { Link } from 'react-router-dom';
 
 
 const Memo = () => {
   const skilled_list = useSelector((state)=> state.skilled.list);
   const history = useHistory();
-  //console.log(skilled_list);
+  //console.log(skilled_list[0].id);
 
-  
-  const dispatch = useDispatch();
+
+const dispatch = useDispatch();
 
   React.useEffect(()=>{
     dispatch(loadSkilledFB());}
@@ -35,9 +36,14 @@ const Memo = () => {
                         <S.Btn onClick={() => {
                           dispatch(deldteSkilledFB(skilled_list[i].id));
                         }}>x</S.Btn>  
-                        <S.BtnUp onClick={()=>{
-                         dispatch(updateSkilledFB(skilled_list[i].id));
-                        }}>📌</S.BtnUp>
+                        <S.BtnChakUp onClick={()=>{
+                         dispatch(CheckSkilledFB(skilled_list[i].id));
+                        }}>📌</S.BtnChakUp>
+
+                        <Link to={`/input2/${i}`}>
+                          <S.BtnUp>✏</S.BtnUp>
+                        </Link>
+
                     <S.Concept_wrap>
                         <S.Concept>개념</S.Concept>
                         <div>{a[1]}</div>

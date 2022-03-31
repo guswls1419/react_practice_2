@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 import Memo from './memo';
 import AddInput from './input';
+import ChingeInput from './input2';
 import Styled from 'styled-components';
 import {Link, Route} from 'react-router-dom';
 import { db } from './firebase';
@@ -41,7 +42,10 @@ function App() {
            <Route path="/input">
                 <AddInput/>
             </Route>
-            
+          <Route path="/input2/:chinge_index">
+            <ChingeInput/>
+          </Route>
+          
             <Link to='/input' style={{textDecoration: 'none'}}>
                 <Button>+</Button>
             </Link>
@@ -77,7 +81,7 @@ const Button = Styled.button `
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position : sticky ;
+  position : fixed ;
   left : 1800px;
   bottom : 115px;
   border : none;
@@ -97,7 +101,7 @@ const ButtonTop = Styled.button `
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position : sticky ;
+  position : fixed ;
   left : 1800px;
   bottom : 50px;
   border : none;

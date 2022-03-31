@@ -16,7 +16,7 @@ const AddInput = ()=> {
   const inputRef_3 = useRef(null);
   
   const newData1 = useSelector((state)=> state.skilled.list);
-  
+  console.log(newData1)
 
 
   const dispatch = useDispatch();
@@ -79,7 +79,6 @@ font-weight: 540;
 `;
 
 const Name = Styled.input`
-
 width : 400px;
 height : 30px;
 border-bottom :2px solid rgb(255, 226, 162);

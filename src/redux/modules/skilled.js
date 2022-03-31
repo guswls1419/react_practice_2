@@ -9,6 +9,7 @@ const LOAD = 'skilled/LOAD';
 const CREATE = 'skilled/CREATE';
 const UPDATE = 'skilled/UPDATE'; 
 const DELETE = 'skilled/DELETE'; 
+const CHECK = 'skilled/CHECK';
 
 const initialState = {
     list : [],
@@ -23,9 +24,14 @@ export function createSkilled(skilled) {
 return { type: CREATE, skilled };
 }
 
-export function updateSkilled(skilled_index) {
-    //console.log("변경버킷",skilled_id);
-return { type: UPDATE, skilled_index };
+export function CheckSkilled(skilled_index) {
+    //console.log("체크버킷",skilled_index);
+return { type: CHECK, skilled_index };
+}
+
+export function updateSkilled(skilled_Chingeindex) {
+    console.log("수정버킷",skilled_Chingeindex);
+return { type: UPDATE, skilled_Chingeindex };
 }
 
 export function deldteSkilled(skilled_Date) {
@@ -85,7 +91,7 @@ export const deldteSkilledFB = (skilled_id) => {
     }
 }
 
-export const updateSkilledFB = (skilled_id) => {
+export const CheckSkilledFB = (skilled_id) => {
     return async function (dispatch, getState) {
         const docRef = await doc(db, "Skilled", skilled_id);
         //console.log(docRef)
@@ -100,8 +106,29 @@ export const updateSkilledFB = (skilled_id) => {
         const skilled_index = _skilled_list.findIndex((b)=>{
             return b.id === skilled_id;
         })
-        dispatch(updateSkilled(skilled_index));
+        dispatch(CheckSkilled(skilled_index));
         //console.log(skilled_index)
+    };
+};
+
+export const updateSkilledFB = (skilled_Chingeindex) => {
+    //console.log(skilled_Chingeindex)
+    return async function (dispatch) {
+        const docRef = await doc(db, "Skilled", skilled_Chingeindex.id);
+        
+        //(await getDoc(docRef)).data().boolean === false
+        updateDoc(docRef, {
+            0:skilled_Chingeindex[0],
+            1:skilled_Chingeindex[1],
+            2:skilled_Chingeindex[2]
+        });
+
+        // const _skilled_list = getState().skilled.list;
+        // const skilled_Chingeindex= _skilled_list.findIndex((b)=>{
+        //     return b.id === skilled_Chingeindex.id;
+        // })
+        dispatch(updateSkilled(skilled_Chingeindex));
+      
     };
 };
 
@@ -120,7 +147,7 @@ export default function reducer(state = initialState, action = {}) {
         // }
     // do reducer stuff
 
-    case "skilled/UPDATE": {
+    case "skilled/CHECK": {
        // console.log("이제 완료할거야");
        // console.log(state,action);
 
@@ -139,6 +166,27 @@ export default function reducer(state = initialState, action = {}) {
         //console.log({list : new_skilled_list});
         return {list : new_skilled_lists};
     }
+
+    case "skilled/UPDATE": {
+        // console.log("이제 완료할거야");
+        // console.log(state,action);
+ 
+         const new_skilled_card = state.list.map((l) => {
+             
+             if(action.skilled_Chingeindex.index == l.index){
+                 let new_card = {
+                     ...l,
+                     0: action.skilled_Chingeindex[0],
+                     1: action.skilled_Chingeindex[1],
+                     2: action.skilled_Chingeindex[2]
+                 }
+             }else{
+                 return l ;
+             }
+         });//console.log(new_skilled_lists);
+         //console.log({list : new_skilled_list});
+         return {list : new_skilled_card};
+     }
 
 
     case "skilled/DELETE": {
