@@ -3,7 +3,7 @@
 
 작업명 : 나만의 사전 만들기
 
-작업물 : https://youtu.be/xkR0_Wau8uU
+작업물 : https://youtu.be/EaYE4_JyVsk
 
 
 ## ✏ 구현한 기능 ✏
