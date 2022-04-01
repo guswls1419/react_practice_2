@@ -34,7 +34,7 @@ function App() {
                     }}>
                     React 용어 사전 </Link>
             </Nav>
-            
+              
             <Route exact="exact" path="/">
               <Memo/>
             </Route>

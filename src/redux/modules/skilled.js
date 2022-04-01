@@ -90,7 +90,7 @@ export const deldteSkilledFB = (skilled_id) => {
         dispatch(deldteSkilled(skilled_Date));
     }
 }
-
+ 
 export const CheckSkilledFB = (skilled_id) => {
     return async function (dispatch, getState) {
         const docRef = await doc(db, "Skilled", skilled_id);
@@ -112,7 +112,7 @@ export const CheckSkilledFB = (skilled_id) => {
 };
 
 export const updateSkilledFB = (skilled_Chingeindex) => {
-    //console.log(skilled_Chingeindex)
+    console.log(skilled_Chingeindex.id)
     return async function (dispatch) {
         const docRef = await doc(db, "Skilled", skilled_Chingeindex.id);
         
@@ -166,27 +166,6 @@ export default function reducer(state = initialState, action = {}) {
         //console.log({list : new_skilled_list});
         return {list : new_skilled_lists};
     }
-
-    case "skilled/UPDATE": {
-        // console.log("이제 완료할거야");
-        // console.log(state,action);
- 
-         const new_skilled_card = state.list.map((l) => {
-             
-             if(action.skilled_Chingeindex.index == l.index){
-                 let new_card = {
-                     ...l,
-                     0: action.skilled_Chingeindex[0],
-                     1: action.skilled_Chingeindex[1],
-                     2: action.skilled_Chingeindex[2]
-                 }
-             }else{
-                 return l ;
-             }
-         });//console.log(new_skilled_lists);
-         //console.log({list : new_skilled_list});
-         return {list : new_skilled_card};
-     }
 
 
     case "skilled/DELETE": {

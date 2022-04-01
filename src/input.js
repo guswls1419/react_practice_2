@@ -38,7 +38,7 @@ const AddInput = ()=> {
       date:Date.now(),
       boolean : false
 
-    }));
+    })); 
   };
   
 // console.log(list)

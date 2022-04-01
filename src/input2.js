@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch ,useSelector } from "react-redux";
 import {createSkilled,createSkilledFB, updateSkilledFB} from "./redux/modules/skilled";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-
+  
 const ChingeInput = ()=> {
 
   const [list,setList] = useState('');
@@ -21,9 +21,9 @@ const ChingeInput = ()=> {
   const params = useParams();
   const dispatch = useDispatch();
 
-//console.log(newData1[params.chinge_index][0])
+console.log(newData1)
 
-  const chinges = ()=>{
+  const chinges = (Change_id)=>{
     const name = ChingeInputRef_1.current.value;
     const second = ChingeInputRef_2.current.value;
     const rdata = ChingeInputRef_3.current.value;
@@ -35,8 +35,7 @@ const ChingeInput = ()=> {
       0:name,
       1:second,
       2:rdata,
-      date:Date.now(),
-      boolean : false
+      id : Change_id
     }));
   };
   
@@ -61,7 +60,9 @@ const ChingeInput = ()=> {
               </Input_wrap1>
           </Form1>
           <Link to='/' style={{textDecoration: 'none'}}>
-            <Button1 onClick={chinges} >수정하기</Button1>
+            <Button1 onClick={()=>{
+                chinges(newData1[params.chinge_index].id)
+            }} >수정하기</Button1>
           </Link>
 
       </div>

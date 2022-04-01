@@ -12,7 +12,7 @@ right : 35px;
 font-size: 25px;
 font-weight : bold;
 color : rgb(255, 173, 66);
-`;
+`; 
 
 export const BtnChakUp = styled.button `
 width: 5px;
